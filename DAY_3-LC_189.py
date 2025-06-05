@@ -241,3 +241,7 @@ I think that the cyclic would have followed had i actually implemented this naiv
 rather than trying to figure out the O(1) time one of the bat. So maybe this is just proof to always 
 implement the naive solution. 
 """
+
+
+
+"""realizing i was close just needed the k mod thing."""
