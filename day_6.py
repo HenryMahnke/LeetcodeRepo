@@ -48,6 +48,7 @@ for i in range(0,m) //outer loop
 def groupAnagrams(strs): 
     dictArray = []
     indexArray = []
+    outputStrs = []
     for i in range(len(strs)):
         curDict = {}
         for j in range(len(strs[i])):
@@ -57,6 +58,8 @@ def groupAnagrams(strs):
         if not dictArray:
             dictArray.append([curDict])
             indexArray.append([i])
+            outputStrs.append([strs[i]])
+
         else:
             added = False
             for k in range(len(dictArray)): #exclusive of i
@@ -65,18 +68,24 @@ def groupAnagrams(strs):
                 if curDict == dictArray[k][0]:
                     dictArray[k].append([curDict])
                     indexArray[k].append(i) #the i'th index is what we are currently indexing through
+                    outputStrs[k].append(strs[i])
                     added = True
             if not added:
                 indexArray.append([i])
+                outputStrs.append([strs[i]])
                 dictArray.append([curDict])
-    print(dictArray) 
-    print(indexArray)
+    return outputStrs
+    # print(dictArray) 
+    # print(indexArray)
+    # print(outputStrs)
                 
 
 
 
-strs = ["act","tac","pots","tops","cat","stop","hat"]
+# strs = ["act","tac","pots","tops","cat","stop","hat"]
+strs = [""]
 #the output we got was indexes 0,1,4, which is act tac, cat, that is correct 
 #then we got 2,3,5 that is pots, tops, stop, that is correct, then we got 6 which is hat, that is correct
-#so now just instead of printing the index then
-groupAnagrams(strs)
+#so now just instead of printing the index then we just want to append to the output
+#so this will use more than O(m) space.
+print(groupAnagrams(strs))
