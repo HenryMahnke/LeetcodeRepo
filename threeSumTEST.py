@@ -50,7 +50,13 @@ def threeSum(nums):
     mySet = set()
     nums.sort() 
     print(nums)
-
+    l1,r1 = 0 , len(nums)-1
+    val = nums[l1]+nums[r1]
+    #now want to add one of the remaining numbers to the quantity val
+    while l1 < r1:
+        if val > 0:
+            l+=1
+        
 
 
 
