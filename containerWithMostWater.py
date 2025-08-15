@@ -38,4 +38,6 @@ Left is smaller? No matter what you change right to, you are decreasing the widt
 by the height of left, you will never find a larger area, so you have to discard left, because in one step, with the knowledge 
 of the problem, you can certifiably say that there is no larger area for that step. 
 You continue this, discarding the smallest which makes this 2 pointer approach possible.
+
+i didn't get this without the hint from neetcode :(
 """
