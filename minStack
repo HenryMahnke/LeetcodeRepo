@@ -1,0 +1,36 @@
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.pref = []
+        self.smallest = float('inf')
+        #can't do any comparisons because has to run in O(1)
+        #but we have O(n) space, so really we just need to be thinking 
+        #of the right data structure
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        self.smallest = min(self.smallest,val)
+        self.pref.append(self.smallest)
+        print("stack", self.stack)
+        print("pref", self.pref)
+        return None
+
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.pref.pop()
+        if self.pref:
+            self.smallest = self.pref[-1]
+        else:
+            self.smallest = float('inf')
+        print("stack on pop", self.stack)
+        print("pref on pop", self.pref)
+        return None
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+
+    def getMin(self) -> int:
+        return self.pref[-1]
