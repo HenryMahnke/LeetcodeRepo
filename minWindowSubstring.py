@@ -25,13 +25,15 @@ def minWindow(s, t):
     for ch in t:
         tCount[ch] = tCount.get(ch,0) + 1 
     print(tCount)
+    subCount = {}
+    subCount[s[l]] = 1
+
     while r < len(s):
+        print("cursubstring", s[l:r+1]) 
+        print(subCount)
         is_subset = True
         print(s[l:r+1])
         #fills count
-        subCount = {}
-        for ch in s[l:r+1]: 
-            subCount[ch] = subCount.get(ch,0) + 1
         #can't compare hashmaps directly, have to see if they ahve the same values
         for i in tCount.keys():
             if tCount[i] > subCount.get(i,0):
@@ -41,6 +43,8 @@ def minWindow(s, t):
         if is_subset:
             #shrink the window as much as we can
             while is_subset: 
+                print("while: cursubstring", s[l:r+1]) 
+                print(subCount)
                 subCount[s[l]] = subCount[s[l]] -1
                 print(subCount)
                 if subCount[s[l]] == 0: 
@@ -51,12 +55,8 @@ def minWindow(s, t):
                         is_subset = False 
                 l+=1
                 
-            print(subCount) 
-            print("l", l ," r", r)
-        
             #then add most recent(that tripped it) back
             l-=1
-            print("l", l ," r", r)
 
             subCount[s[l]] = subCount.get(s[l],0) + 1
             windowlen = r-l + 1
@@ -69,15 +69,23 @@ def minWindow(s, t):
                 shortest = windowlen
                 substring = curSubstring
             #advance l
+            subCount[s[l]] = subCount.get(s[l],0) -1
+            if subCount[s[l]] == 0:
+                del subCount[s[l]]
             l+=1
-            print("cursubstring", curSubstring) 
+            subCount[s[l]] = subCount.get(s[l],0) +1
+
             print("l", l ," r", r)
         else: 
             r+=1
+            if r < len(s):
+                subCount[s[r]] = subCount.get(s[r],0) +1
+
     return substring
         
 
-# s = "OUZOXYADZVTXYZ"
-s = ""
+s = "OUZOXYADZVTXYZ"
+# s = ""
 t = "XYZ"
 print("substring", minWindow(s,t))
+#need to change to use missing feature because then you only remove and add rather than scanning each time.
