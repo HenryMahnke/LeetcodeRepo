@@ -1,13 +1,30 @@
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        maxOverall = 0
+        stack = []
+        maxArea = 0
+        heights.append(0)
         for i in range(len(heights)):
-            minOfNext = float('inf')
-            maxRectiStart = 0 
-            for j in range(i,len(heights)):
-                minOfNext = min(heights[j],minOfNext)
-                rectHeight = min(minOfNext,heights[i])
-                rectArea = rectHeight * (j - i+1)
-                maxRectiStart = max(rectArea,maxRectiStart)
-            maxOverall = max(maxOverall,maxRectiStart)
-        return maxOverall
+            print("stack:" , stack)
+
+            while stack and heights[i] < heights[stack[-1]]:
+                print("stack:", stack)
+                prev= stack.pop()
+                if stack:
+                    width = i - stack[-1] -1
+                else: 
+                    width = i
+                height = heights[prev]
+                #lower bounded by the height at prev 
+                print("width", width)
+                print("height",height)
+                area = width * height
+                maxArea = max(area,maxArea)
+                print(maxArea)
+            stack.append(i)
+        return maxArea
+
+
+
+
+
+        
