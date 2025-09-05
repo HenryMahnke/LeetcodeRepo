@@ -63,3 +63,6 @@ class Solution:
             l1 = l1Next 
             l2 = l2Next
             # printList(head)
+#here, i made the mistake of putting an over emphasis on where r ends up, trying to ensure that it is exactly at the end of the list 
+#which is bug prone, r is actually just a medium for finding the middle because you want the nonecase for r to trip when to stop for the slow pointer 
+#that would have introduced fewer bugs, but this was overall good linked list practice so I'm happy i muscled through it.
