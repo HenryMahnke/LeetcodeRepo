@@ -24,10 +24,29 @@ class TimeMap:
                     return ls[i][1]
             #if the key is not in it then we want to return the most recent(time) value of k 
             #we can do this by iterating backward through the list and checking for the first timestamp that is less 
-            for i in range(len(ls)-1, -1,-1):
-                if ls[i][0] < timestamp: 
-                    #first one that is less than timestamp
-                    return ls[i][1]
+            # for i in range(len(ls)-1, -1,-1):
+            #     if ls[i][0] < timestamp: 
+            #         #first one that is less than timestamp
+            #         return ls[i][1]
+            tripped = False
+            for i in range(len(ls)):
+                if ls[i][0] > timestamp:
+                    tripped = True
+                    print("tripped")
+                    break
+            if not tripped:
+                print("not tripped?")
+                #the last value in the list 
+                return ls[-1][1]
+            else: # if tripped 
+                print("going to return the i-1 value")
+                print(ls)
+
+                if ls[i-1] and i-1 >-1:
+                    return ls[i-1][1]
+                else: 
+                    return "" 
+            
             #if the list exists, but it is not at time stamp, and there is no time stamp that is less 
             #then we return empty 
             return ""
