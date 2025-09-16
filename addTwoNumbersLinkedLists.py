@@ -44,3 +44,7 @@ class Solution:
                 running = running.next
         #then we have to reform the list 
         return newList
+
+
+        # is another way to do this with a carry digit
+        #and traversing both at the same time.
